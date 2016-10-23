@@ -115,17 +115,22 @@ View.prototype.submit = function(data){
     
     var _this = this;
     var dataObject = data || this.query.find('.viewForm').serialize();
-    this.actionStart('submit');
-    $.ajax({
-        url : APP_PATH+'collection',
-        data : dataObject
-    }).done(function(data){
-        _this.actionStop('submit');
-        _this.appendSuccess(data);
-    }).error(function(xhr){
-        _this.actionStop('submit');
-        _this.appendError(xhr);
-    });
+    console.log(dataObject);
+    if(!(this.query.find('.qcollection').val())){
+        $(".collections").addClass('active');
+    } else {
+        this.actionStart('submit');
+        $.ajax({
+            url : APP_PATH+'collection',
+            data : dataObject
+        }).done(function(data){
+            _this.actionStop('submit');
+            _this.appendSuccess(data);
+        }).error(function(xhr){
+            _this.actionStop('submit');
+            _this.appendError(xhr);
+        });
+    }
 };
 
 View.prototype.reset = function(){

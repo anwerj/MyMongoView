@@ -1,7 +1,7 @@
 module.exports = {
 
     name : 'Distinct',
-    collection : 'orders',
+    action : 'distinct',
     keys : [
         
     ]
