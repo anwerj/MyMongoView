@@ -12,7 +12,12 @@ function Result(view){
                 this.beautify(result);
             }
             return result;
-        }, 
+        },
+        string : function(item, index, count){
+            return $(Html('#tResultList', { item : item }));
+            
+        },
+        
         expandToggle : function(to, open){
 
             var resultItems = to.find('.result-items');

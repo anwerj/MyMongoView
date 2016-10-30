@@ -17,6 +17,8 @@ module.exports = {
         } else if(context.action === 'findOne'){
             context.action = 'find';
             context.limit = 1;
+        } else if(context.action === 'distinct'){
+            context.key = this.toKey(context.key);
         }
         //console.log("\nCONTEXT\n",context);
         return context;
@@ -48,6 +50,10 @@ module.exports = {
 
     toLimit : function(limit){
         return parseInt(limit) || 10;
+    },
+    
+    toKey : function(key){
+        return new String(key).toString();
     },
     
     toData : function(input){

@@ -159,9 +159,15 @@ View.prototype.appendSuccess = function(data){
     var resultSet = this.result.find('.result-set');
     if(data.result.length){
         var result = Result(this);
-        data.result.forEach(function(item, index){
-            resultSet.append(result.item(item, index, data.result.length));
-        });
+        if(data.meta.context.action === 'find'){
+            data.result.forEach(function(item, index){
+                resultSet.append(result.item(item, index, data.result.length));
+            });
+        } else {
+            data.result.forEach(function(item, index){
+                resultSet.append(result.string(item, index, data.result.length));
+            });
+        }
     } else {
         
     }

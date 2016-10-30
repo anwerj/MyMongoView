@@ -46,6 +46,13 @@ module.exports = {
                     });
                 break;
 
+            case 'distinct':
+                r = s.distinct(context)
+                    .then(function(response){
+                        return { result : response}
+                    });
+                break;
+
             default:
                 return res.status(400).send('Invalid Action');
         }
