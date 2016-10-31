@@ -152,7 +152,7 @@
                                 <% if(view.action === 'distinct'){ %>
                                     <span class="input-item">
                                         <span>Key</span>
-                                        <input list="<%=id %>key" class="qkey form-control input-xs" name="key" value="<%= view.key && view.key[0] %>">
+                                        <input list="<%=id %>key" class="qkey form-control" name="key" value="<%= view.key && view.key[0] %>">
                                         <datalist id="<%=id %>key">
                                             <% if(view.key){
                                              view.key.forEach(function(value, key){ %>
@@ -160,8 +160,20 @@
                                             <% }); } %>
                                         </datalist>
                                     </span>
-                                <% } %>
-                                <% if(view.group){ %>
+                                <% } else { %>
+                                    <span class="input-item">
+                                        <span>Page</span>
+                                        <input class="qpage form-control input-xs" name="page" type="number" value="1">
+                                    </span>
+                                    <span class="input-item">
+                                        <span>Limit</span>
+                                        <select class="qlimit form-control" name="limit">
+                                            <% [10,20,30,50].forEach(function(value, key){ %>
+                                                <option value="<%=value %>"><%=value %></option>
+                                            <% }); %>
+                                        </select>
+                                    </span>
+                                <% } if(view.group){ %>
                                     <span class="input-item">
                                         <span>Group</span>
                                         <input list="<%=id %>group" class="qgroup form-control input-xs" name="group" value="<%= view.group[0] %>">
@@ -172,27 +184,16 @@
                                         </datalist>
                                     </span>
                                     <span class="input-item">
-                                        <span>Sum</span>
-                                        <select class="qsum form-control" name="sum">
-                                            <% (view.sum || [1]).forEach(function(value, key){ %>
+                                        <span>Acc</span>
+                                        <select class="qaccumulator form-control" name="accumulator">
+                                            <% (view.accumulator || ['sum','avg','min','max']).forEach(function(value, key){ %>
                                                 <option value="<%=value %>"><%=value %></option>
                                             <% }); %>
                                         </select>
                                     </span>
 
                                 <% } %>
-                                <span class="input-item">
-                                    <span>Page</span>
-                                    <input class="qpage form-control input-xs" name="page" type="number" value="1">
-                                </span>
-                                <span class="input-item">
-                                    <span>Limit</span>
-                                    <select class="qlimit form-control" name="limit">
-                                        <% [10,20,30,50].forEach(function(value, key){ %>
-                                            <option value="<%=value %>"><%=value %></option>
-                                        <% }); %>
-                                    </select>
-                                </span>
+                                
                                 <% if(view.action === 'find'){ %>
                                 <span class="input-item">
                                     <span>Sort By</span>
@@ -337,7 +338,9 @@
         <div class="wide result-set"></div>
         <div class="rBottomBar wide bglite">
             <span class="pull-right btn-group btn-group-xs">
-                <button class="btn btn-success rNextPage" data-last-id="<%= meta.lastId %>"> Next Page </button>
+                <% if(meta.context.action === 'find' && meta.hasMore){ %>
+                    <button class="btn btn-success rNextPage" data-last-id="<%= meta.lastId %>"> Next Page </button>
+                <% } %>
             </span>
         </div>
     </script>

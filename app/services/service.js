@@ -45,10 +45,7 @@ service.prototype.collections = function(forceRefresh){
 
 service.prototype.distinct = function(context){
     var query = this.collection
-                .distinct(context.key, context.filter, { sort : context.sort, limit : 2})
-                //.sort(context.sort)
-                //.skip(context.skip)
-                //.limit(context.limit);
+                .distinct(context.key, context.filter);
     
     return query;
 };

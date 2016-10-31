@@ -79,12 +79,14 @@ module.exports = {
     },
     
     toAggregate : function(context){
+        var total = {};
+        total['$'+context.accumulator] = 1;
         return [
             { $match : context.filter },
-            { $group : { _id : context.group, total : { $sum : context.sum }}},
-            { $sort : { total : context.order}},
+            { $group : { _id : context.group, total : total}},
+            { $sort : { total : context.order}},            
+            { $skip : context.skip },
             { $limit : context.limit },
-            { $skip : context.skip }
         ];
     },
     

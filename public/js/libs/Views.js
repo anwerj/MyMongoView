@@ -2,6 +2,7 @@ function View(view, parentRandom){
 
     this.random = Math.random().toString(16).slice(2);
     this.view = view;
+    this.view.action = view.action || 'find';
     this.nav = this.getNav(parentRandom);
     this.query = this.getQuery(parentRandom);
     this.result = this.getResult(parentRandom);
