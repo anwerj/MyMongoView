@@ -8,7 +8,6 @@ $(document).ready(function(){
     });
 
     var handleWithControl = function(e){
-        console.log(e.keyCode);
         if(e.keyCode == 10){
             $(".query.active .submit").click();
         }

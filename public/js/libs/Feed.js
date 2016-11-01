@@ -32,6 +32,5 @@ var loadFeeds = function(data){
     return out;
 };
 Feed.load = function(collection, key){
-    console.log(collection + '-' + key);
     return Storage.get(collection + '-' + key, true);
 }

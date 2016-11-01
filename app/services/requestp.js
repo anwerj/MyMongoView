@@ -7,11 +7,11 @@ module.exports = {
         context.order = this.toOrder(context.orderOn);
         context.sort = this.toSort(context.sortOn, context.order);
         context.skip = this.toSkip(context.page, context.limit);
-        context.group = this.toGroup(context.group);
-        context.sum = this.toSum(context.sum);
         context.limit = this.toLimit(context.limit);
         context.filter = this.toData(context.filter);
         if(context.action === 'aggregate'){
+            context.group = this.toGroup(context.group);
+            context.sum = this.toSum(context.sum);
             context.aggregate = this.toAggregate(context);
             context.aggregateOption = this.toAggregateOption(context);
         } else if(context.action === 'findOne'){
@@ -101,6 +101,7 @@ module.exports = {
                 startAt : Date.now(),
                 endAt : null,
                 count : null,
+                hasMore : false,
                 context : context
             },            
             result : []
@@ -112,6 +113,13 @@ module.exports = {
         response.meta.endAt = Date.now();
         response.meta.count = result.count;
         response.result = result.result;
+        
+        if(response.meta.count > (response.meta.context.skip + response.meta.context.limit)){
+            response.meta.hasMore = true;
+            if(response.meta.context.sortOn === '_id'){
+                response.meta.lastEntry = _lodash.last(response.result)['_id'];
+            }
+        }
 
         return response;
     }

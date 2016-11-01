@@ -1,5 +1,4 @@
-var base = require('./BaseController'),
-    service = require('../../services/service'),
+var service = require('../../services/service'),
     requestp = require('../../services/requestp');
 
 
@@ -7,7 +6,7 @@ module.exports = {
     all : function(req, res){
 
         var s = new service(req.params._con);
-        s.collections().then(function(names){
+        s.collections(req.query.force).then(function(names){
             res.send(names);
         });
 

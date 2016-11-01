@@ -1,5 +1,4 @@
-var base = require('./BaseController'),
-    views = require('../../services/views');
+var views = require('../../services/views');
 
 
 module.exports = {

@@ -55,5 +55,35 @@ $(document).ready(function(){
     
     $('.collist').click(function(){
         $(".collections").toggleClass('active');
+    });
+    
+    $('#connect').change(function(){
+        var newCon = $(this).val();
+        window.location = APP_HOST+'c/'+newCon+'/'+window.location.hash;
+    });
+    
+    $('#searchCollection').keyup(function(){
+        var val = $(this).val().toLowerCase().trim();
+        $('.collectionbtn').each(function(index, item){
+            var cname = $(item).data('collection');
+            if(cname.toLowerCase().indexOf(val) === -1){
+                $(item).addClass('hide');
+            } else {
+                $(item).removeClass('hide');
+            }
+        })
+    });
+    
+    $('#refreshCollection').click(function(){
+        $(this).find('span').addClass('gly-spin');
+        var xhr = $.ajax({
+            url : APP_PATH+'collections',
+            data : {force : true},
+            dataType : 'JSON'
+        });
+        xhr.done(function(data){
+            window.location.reload();
+        });
     })
+    
 });

@@ -107,8 +107,7 @@ function Result(view){
                 value : item.text(),
                 dataType : item.data('value-type')
             };
-            view.fillFilter(prompt, true);
-            
+            view.fillFilter(prompt);
             
         },
         
@@ -130,6 +129,26 @@ function Result(view){
             to.find('.rbval-reset').click(function(){
                 var rbval = $(this).parent().prev();
                 rbval.text(rbval.data('value')).blur();
+            })
+        },
+        
+        end : function(){
+            
+            
+            this.bindEndEvents();
+        },
+        
+        bindEndEvents : function(){
+            
+            view.result.find('.rNextPage').click(function(event){
+                var prompt = {
+                    name : $(this).data('sort-on'),
+                    operator : $(this).data('sort-order') == '1' ? 'gt' : 'lt',
+                    value : $(this).data('last-entry'),
+                    dataType : $(this).data('entry-type')
+                };
+                view.query.find('.qpage').val(1);
+                view.fillFilter(prompt, true);
             })
         }
     }

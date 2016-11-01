@@ -139,12 +139,15 @@ ul,li{
     font-size: 12px;
     padding: 3px;
     position: absolute;
-    z-index: 1;
+    z-index: 99;
     background: white;
     border-bottom: 5px solid #999;
 }
 .collections.active{
     display: block;
+}
+.collections .collectionbar{
+    padding: 5px;
 }
 .collections .collectionbtn{
     padding: 3px 5px;
@@ -175,6 +178,13 @@ ul,li{
     font-size: 12px;
     height: 20px;
     border: none;
+    color: #759c99;
+}
+.querow .qcollection{
+    font-weight: bold;
+    font-size: 14px;
+    color: #3b4;
+    border: 0px;
 }
 .input-item{
     display: inline-block;
@@ -241,11 +251,12 @@ ul,li{
 }
 .result-items{
     margin: 0 10px;
-    height: 100px;
+    max-height: 100px;
     overflow: hidden;
 }
 .result-items.expanded{
     height: auto;
+    max-height: 100%;
 }
 .result-data-first{
     float: left;

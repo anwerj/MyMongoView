@@ -75,18 +75,17 @@ View.prototype.appendPrompt = function(prompt){
     return id;
 }
 
-View.prototype.fillFilter = function(prompt, open){
+View.prototype.fillFilter = function(prompt){
     var fpromptModal = this.query.find('.fpromptModal');
     for(var i in prompt){
         if(prompt[i]){
             fpromptModal.find('[name="'+i+'"]').val(prompt[i]);
         }
     }
-    if(open){
-        fpromptModal.modal();
-    }
+    
+    fpromptModal.modal();
 }
-View.prototype.addFilter = function(){
+View.prototype.addFilter = function(submit){
     
     $('#query'+this.random+'fPrompt').modal('toggle');
     var prompt = this.query.find('.qpromtAdd').serializeObject();
@@ -94,6 +93,9 @@ View.prototype.addFilter = function(){
     if(prompt.name && prompt.name.trim()){
         var id = this.appendPrompt(prompt);
         $('#'+id).focus();
+    }
+    if(submit){
+        this.submit();
     }
 }
 
@@ -116,7 +118,7 @@ View.prototype.submit = function(data){
     
     var _this = this;
     var dataObject = data || this.query.find('.viewForm').serialize();
-    console.log(dataObject);
+
     if(!(this.query.find('.qcollection').val())){
         $(".collections").addClass('active');
     } else {
@@ -169,6 +171,7 @@ View.prototype.appendSuccess = function(data){
                 resultSet.append(result.string(item, index, data.result.length));
             });
         }
+        result.end();
     } else {
         
     }
@@ -202,7 +205,11 @@ View.prototype.bindEvents = function(){
     });
     to.query.find('.qpromtAdd').submit(function(event){
         event.preventDefault();
+        to.addFilter(true);
+    }); 
+    to.query.find('.btnAddFilter').click(function(event){
+        event.preventDefault();
         to.addFilter();
-    })    
+    }); 
 };
 
