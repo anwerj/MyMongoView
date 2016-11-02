@@ -59,6 +59,5 @@ module.exports = function(app){
         req.params.code = 'Cant found the routes';
         res.status(404).send(req.params);
     });
-    console.log('App Loaded For : '+process.env.NODE_ENV);
 
 };

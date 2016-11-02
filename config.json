@@ -6,7 +6,7 @@
     "connections" : [
         {
             "name" : "Connection",
-            "string" : "localhost:27017/text",
+            "string" : "localhost:27017/test",
             "options" : {},
             "config" : {
                 "debug" : true
