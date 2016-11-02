@@ -1,6 +1,6 @@
 {
   "name": "my-mongo-view",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "MongoDB Easy Views",
   "main": "index.js",
   "scripts": {
