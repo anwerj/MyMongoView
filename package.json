@@ -1,6 +1,6 @@
 {
   "name": "my-mongo-view",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "description": "MongoDB Easy Views",
   "main": "index.js",
   "scripts": {
@@ -19,6 +19,7 @@
     "mongoose": "^4.4.7",
     "ncp": "^2.0.0",
     "node-delete": "^0.1.2"
+    
   },
   "author": "Junaid Anwer <junaid.up.in@gmail.com>",
   "license": "ISC"
