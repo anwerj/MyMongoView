@@ -10,7 +10,6 @@ function views(connect){
 
 views.prototype.one = function(key){
     var file = this.container+'view/'+key;
-    console.log(file);
     if(fs.existsSync(file)){
         return require(file);
     }

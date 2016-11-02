@@ -28,12 +28,14 @@ service.prototype.collections = function(forceRefresh){
                                     return item;
                                 })
                         }).then(function(result){
+                            console.log('Refreshing Collections with', forceRefresh);
                             view.set('cache','_collections', result);
                             return resolve(result);
                         });
                     });
+                } else {
+                    console.log('Return Cached Collection count:' + cached.length);
                 }
-            console.log('Return Cached Collection count:' + cached.length);
             return resolve(cached);
         } catch(err){
             return reject(err);

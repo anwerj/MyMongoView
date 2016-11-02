@@ -10,8 +10,8 @@ Install MyMongoView with npm, create a directory and run given command from that
 npm install my-mongo-view
 ```
 
-Setup your MongoDB Connections from `config.json` file. There is a default connections with default views.
-Just change connections.string to your MongoDB instances.    
+Setup your MongoDB Connections from `config.json` file. There is a default connection with default views.
+Just change connections.string to your MongoDB instance.    
 > You can also add multiple connections.
 
 **Connection Parameters :**
@@ -21,7 +21,7 @@ Just change connections.string to your MongoDB instances.
 > `"string" : "mongodb://username:password@host/database"`
 
 *container* : Name to the directory where your views and cache are saved.    
-> You can have multiple container, ideally a container belongs to one database. You can use same container on different environments.    
+> You can have multiple container, ideally a container belongs to one database. You can use same container for different environments.    
 > A container must have two writable directories, **views** and **cache.**
 
 *config* and *options* fields are not yet it used.
@@ -35,11 +35,33 @@ MyMongoView has its own structure for views which could be `js|json` file.
 **Views Parameters :**
 
 *name* : Name of the view to remember by (again kind of important)    
-*collection* : You can set a default collection to view. If set, it will query right when you open view, otherwise it will ask you to select a collection.
+*collection* : You can set a default collection to view. If set, it will query right when you open view, otherwise it will ask you to select a collection.    
 *prompt* : Perhaps the most important feature of MyMongoView. Here you defines your query.
 
 > **Prompt** is an object having collection fields as keys and operations + dataType as value.    
-> **Default values for  operator is *eq* and dataType is string.**
+
+A sample view
+``` js
+module.exports = {
+
+    name : 'Orders',
+    collection : 'orders',
+    
+    prompt : {
+        buyer_id : {},
+        order_status : { operators : { eq : '', gt : '' } },
+        status : { dataType : 'number' }
+    },
+    
+    join : {
+        items : {on : 'parent', from : '_id'},
+        buyers : {on : 'buyer_id', from : '_id'}
+    }
+
+};
+```
+
+> **Default values for  operator is *eq* and dataType is *string*.**
 
 You can read more about prompts here
 
@@ -53,8 +75,10 @@ Currently MyMongoView supports three actions find, aggregate and distinct. Every
 #### Find
 Find actions accepts all filters and sort options.
 
+<!--- actions.aggregate --->
 #### Aggregate
 Other that just filters and sort options, you will be asked for aggregate related fields like $group and $accumulator.
 
+<!--- actions.distinct --->
 #### Distinct
 This action will ask for key to find distinct values for. Remember it does not have limit so use vary carefully.

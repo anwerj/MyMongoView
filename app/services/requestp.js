@@ -20,7 +20,6 @@ module.exports = {
         } else if(context.action === 'distinct'){
             context.key = this.toKey(context.key);
         }
-        //console.log("\nCONTEXT\n",context);
         return context;
     },
 
@@ -59,7 +58,6 @@ module.exports = {
     toData : function(input){
 
         var out = {};
-        console.log(input);
 
         _lodash.each(input,function(obj, keyName){
             if(obj){
@@ -113,7 +111,7 @@ module.exports = {
         response.meta.endAt = Date.now();
         response.meta.count = result.count;
         response.result = result.result;
-        
+        console.log(response.meta);
         if(response.meta.count > (response.meta.context.skip + response.meta.context.limit)){
             response.meta.hasMore = true;
             if(response.meta.context.sortOn === '_id'){

@@ -10,6 +10,6 @@ require('./app/bootstrap/config')(config, function(){
     require('./app/bootstrap/app')(app);
     
     app.listen(config.app.port, function() {
-        console.log('Server Started');
+        console.log('Server listening at port %s', config.app.port);
     });
 });

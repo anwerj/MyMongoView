@@ -1,5 +1,5 @@
 .base{
-    font-size: 14px;
+    font-size: 13px;
 }
 .header{
     width: 100%;
@@ -136,7 +136,6 @@ ul,li{
 }
 .collections{
     display: none;
-    font-size: 12px;
     padding: 3px;
     position: absolute;
     z-index: 99;
@@ -182,7 +181,6 @@ ul,li{
 }
 .querow .qcollection{
     font-weight: bold;
-    font-size: 14px;
     color: #3b4;
     border: 0px;
 }
@@ -268,7 +266,7 @@ ul,li{
 }
 .result-data pre{
     background: white;
-    font-size: 11px;
+    font-size: 12px;
     border : none;
     padding: 5px;
     margin: 0px;
@@ -284,7 +282,7 @@ ul,li{
 .rbeauty{
     width: 100%;
     padding: 5px;
-    font-size: 11px;
+    font-size: 12px;
     font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
 }
 .rbeauty ul{
@@ -346,7 +344,7 @@ ul,li{
     color: #777;
     padding: 0 0 0 5px;
     display: none;
-    font-size: 9px;
+    font-size: 10px;
     cursor: pointer;
 }
 .rbeauty li:hover .rbval-updated .rbval-actions{
