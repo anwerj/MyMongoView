@@ -14,7 +14,7 @@
             "container" : "container"
         }
     ],
-    "viewpath" : "../../defaults/",
+    "viewpath" : "../../views/",
     "timezone"  :   "Etc/GMT"
 
 }
