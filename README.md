@@ -30,7 +30,7 @@ Just change connections.string to your MongoDB instances.
 
 Views are actually the queries which you hate to write. You can write views based on your collection, your primary keys or just for one single value to search for.
 
-MyMongoView views has there own structure which could be `js|json`.    
+MyMongoView has its own structure for views which could be `js|json` file.    
 
 **Views Parameters :**
 
@@ -39,7 +39,7 @@ MyMongoView views has there own structure which could be `js|json`.
 *prompt* : Perhaps the most important feature of MyMongoView. Here you defines your query.
 
 > **Prompt** is an object having collection fields as keys and operations + dataType as value.    
-> **Default values for  operator is *eq* and dataType is string. 
+> **Default values for  operator is *eq* and dataType is string.**
 
 You can read more about prompts here
 

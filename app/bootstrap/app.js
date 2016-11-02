@@ -2,9 +2,9 @@ var config = require('../../config'),
     express = require('express'),
     path = require('path'),
     bodyParser = require('body-parser'),
-    service = require('../services/service')
+    service = require('../services/service'),
     ejs = require('ejs'),
-    convertor = require('../services/convertor')
+    convertor = require('../services/convertor'),
     helper = require('../services/helper');
 
 module.exports = function(app){
