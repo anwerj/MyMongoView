@@ -76,14 +76,21 @@ function ManageDefaults(){
                 ncp(path.join(destinationDir,'defaults.json'), path.join(destinationDir,'config.json'), function(err){
                     if (err) displayError(err);
                     
-                    console.log('\x1b[32mCompleted successfully!\x1b[0m');
-                    console.log('\x1b[1m--------------------------------------------------------');
-                    console.log('\x1b[32m-=| MyMongoView successfully installed! |=-\x1b[0m');
-                    
-                    return process.exit(0);
+                    del([
+                        path.join(destinationDir,'defaults.json'),
+                        path.join(destinationDir,'defaults'),
+                        path.join(destinationDir,'package.json')
+                    ], { force: true }, function (err, paths) {
+                        if (err) displayError(err);
+                        
+                        console.log('\x1b[32mCompleted successfully!\x1b[0m');
+                        console.log('\x1b[1m--------------------------------------------------------');
+                        console.log('\x1b[32m-=| MyMongoView successfully installed! |=-\x1b[0m');
+                        
+                        return process.exit(0);
+                    });
                 })
             }
-            
         })
     }
 }
