@@ -4,7 +4,8 @@ var config = require('../../config'),
     bodyParser = require('body-parser'),
     service = require('../services/service')
     ejs = require('ejs'),
-    convertor = require('../services/convertor');
+    convertor = require('../services/convertor')
+    helper = require('../services/helper');
 
 module.exports = function(app){
 
@@ -39,7 +40,8 @@ module.exports = function(app){
             params : req.params,
             config : config,
             data : convertor.getData(),
-            collections : s.collections()
+            collections : s.collections(),
+            docs : helper.docToJs(path.resolve(__dirname + '/../../README.md'))
         }).then(function(content){
             ejs.renderFile(path.resolve(__dirname + '/../../public/home.ejs'),content,{delimiter: '?'},function(err, html){
                 res.send(html);
