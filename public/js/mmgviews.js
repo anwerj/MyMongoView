@@ -57,6 +57,10 @@ $(document).ready(function(){
         $(".collections").toggleClass('active');
     });
     
+    $('.results').click(function(){
+        $(".collections").removeClass('active');
+    })
+    
     $('#connect').change(function(){
         var newCon = $(this).val();
         window.location = APP_HOST+'c/'+newCon+'/'+window.location.hash;

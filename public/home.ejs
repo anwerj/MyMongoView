@@ -40,8 +40,8 @@
     
     <div class="base">
         <div class="box">
-            <div class="col-md-3 sidebar rows bgdark">
-                <div class="header no-selection bgdark">
+            <div class="col-md-3 sidebar rows bgdarker">
+                <div class="header no-selection">
                     <div class="col-md-3 logo">
                         <span>MMV</span>
                     </div>
@@ -54,7 +54,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-12 side-navs bgdarker">
+                <div class="col-md-12 side-navs">
                     <div class="viewlist active">
                         <div class="title btn" role="button">
                             <span class="text-primary">Views </span><small class="text-muted btn-xs">(Click to toggle views)</small>
@@ -62,7 +62,12 @@
                         <div class="collist btn pull-right">
                             <span class="text-primary">Collections</span>
                         </div>
-                        <ul class="strip" id="views-list"></ul>
+                        <div class="connection_details viewlistactive text-muted">
+                            <div class=""> <b>Name : </b><?= config.connections[0].name ?> </div>
+                            <div class=""> <b>String : </b><?= config.connections[0].string ?> </div>
+                            <div class=""> <b>Container : </b><?= config.connections[0].container ?> </div>
+                        </div>
+                        <ul class="strip viewlistactive" id="views-list"></ul>
                     </div>
                     <ul class="navlist" data-count="0"></ul>
                 </div>
@@ -127,7 +132,7 @@
                     <div class="col-md-12 rows" border="0">
                         <input type="hidden" name="action" value="<%=view.action || 'find' %>" >
                         <div class="col-md-12 querow">
-                            <div class="col-md-3 ">
+                            <div class="col-md-3 rows">
                                 <b class="title"><%=view.action || 'find' %></b>
                                 <span class="btn-group btn-group-xs pull-right">
                                     <span class="btn btn-success btn-xs addFilter" data-toggle="modal" data-target="#<%=id %>fPrompt">
@@ -139,10 +144,10 @@
                                 </span>
                             </div>
 
-                            <div class="col-md-6 rows">
+                            <div class="col-md-6 ">
                                 <input class="qcollection form-control" name="collection" value="<%=view.collection %>" readonly="">
                             </div>
-                            <div class="col-md-3 text-right">
+                            <div class="col-md-3 text-right rows">
                                 <span class="queryActions btn-group">
 
                                     <button type="submit" class=" submit btn btn-xs btn-success">

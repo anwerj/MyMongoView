@@ -81,13 +81,15 @@ ul,li{
 .viewlist .title{
     cursor: pointer;
 }
-.viewlist #views-list{
+.viewlist .viewlistactive{
     display: none;
 }
-.viewlist.active #views-list{
+.viewlist.active .viewlistactive{
     display: block;
 }
-
+.viewlist .connection_details{
+    padding: 5px;
+}
 .viewname{
     color: white;
 }
@@ -163,7 +165,7 @@ ul,li{
     display: none;
 }
 .querow{
-    padding: 10px 0px;
+    padding: 10px;
     border-bottom: 1px solid #bbb;
 }
 .query.active{
