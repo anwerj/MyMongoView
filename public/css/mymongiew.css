@@ -22,7 +22,7 @@
 .rows{
     padding: 0px;
 }
-a,a:hover, a:visited, a:active{
+.sidebar a,.sidebar a:hover,.sidebar  a:visited,.sidebar  a:active{
     color: white;
     text-decoration: none;
     padding: 3px 5px;

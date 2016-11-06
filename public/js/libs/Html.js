@@ -28,5 +28,5 @@ Html.isObjectId = function(value){
     return value.match(/^[0-9a-fA-F]{24}$/);
 }
 Html.clean = function(str){
-    return str.replace(/\./, '-');
+    return str.replace(/\./g, '-');
 }
