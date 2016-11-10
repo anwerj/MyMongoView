@@ -1,9 +1,9 @@
-<!--- head --->
+[comment]: # (head)
 # MyMongoView
 MyMongoView provides easy, customizable views to query MongoDB. And above all that it gives most informative and beautiful approach to your MongoDB Document.
 
 [Go through documentation, with screenshots](https://anwerjunaid.github.io/mymongoview/#/)
-<!--- head.installation -->
+[comment]: # (head.installation)
 ### Installation
 
 Install MyMongoView with npm, create a directory and run given command from that directory.
@@ -26,7 +26,8 @@ Just change connections.string to your MongoDB instance.
 > A container must have two writable directories, **views** and **cache.**
 
 *config* and *options* fields are not yet it used.
-<!--- head.views --->
+
+[comment]: # (head.views)
 ### Views
 
 Views are actually the queries which you hate to write. You can write views based on your collection, your primary keys or just for one single value to search for.
@@ -68,18 +69,18 @@ You can read more about prompts here
 
 > MyMongoView will return actual query with the result so that you don't get out of touch
 
-<!--- actions --->
+[comment]: # (actions)
 ### Actions
 Currently MyMongoView supports three actions find, aggregate and distinct. Every action comes with its own set of fields.
 
-<!--- actions.find --->
+[comment]: # (actions.find)
 #### Find
 Find actions accepts all filters and sort options.
 
-<!--- actions.aggregate --->
+[comment]: # (actions.aggregate)
 #### Aggregate
 Other that just filters and sort options, you will be asked for aggregate related fields like $group and $accumulator.
 
-<!--- actions.distinct --->
+[comment]: # (distinct)
 #### Distinct
 This action will ask for key to find distinct values for. Remember it does not have limit so use vary carefully.
