@@ -1,7 +1,7 @@
 <html >
 <head>
 
-    <title>MyMongoGiew</title>
+    <title>MyMongoView | <?= config.connections[params._con].name ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <base href="<?= appPath+conPath ?>">
@@ -43,7 +43,7 @@
             <div class="col-md-3 sidebar rows bgdarker">
                 <div class="header no-selection">
                     <div class="col-md-3 logo">
-                        <span>MMV</span>
+                        <a href="https://anwerjunaid.github.io/mymongoview/#/" target="_blank"><span>MMV</span></a>
                     </div>
 
                     <div class="col-md-8 logo-side">
@@ -63,9 +63,8 @@
                             <span class="text-primary">Collections</span>
                         </div>
                         <div class="connection_details viewlistactive text-muted">
-                            <div class=""> <b>Name : </b><?= config.connections[0].name ?> </div>
-                            <div class=""> <b>String : </b><?= config.connections[0].string ?> </div>
-                            <div class=""> <b>Container : </b><?= config.connections[0].container ?> </div>
+                            <div class=""> <b>Name : </b><?= config.connections[params._con].name ?> </div>
+                            <div class=""> <b>Container : </b><?= config.connections[params._con].container ?> </div>
                         </div>
                         <ul class="strip viewlistactive" id="views-list"></ul>
                     </div>

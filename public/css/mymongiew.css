@@ -257,6 +257,7 @@ ul,li{
 .result-items.expanded{
     height: auto;
     max-height: 100%;
+    overflow: auto;
 }
 .result-data-first{
     float: left;

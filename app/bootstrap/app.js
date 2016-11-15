@@ -58,8 +58,7 @@ module.exports = function(app){
     require('../http/routes')(app);
 
     app.all('*', function(req, res) {
-        req.params.code = 'Cant found the routes';
-        res.status(404).send(req.params);
+        res.redirect('/m/c/'+(config.default || 0)+'/');
     });
 
 };

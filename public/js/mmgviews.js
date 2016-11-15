@@ -63,7 +63,8 @@ $(document).ready(function(){
     
     $('#connect').change(function(){
         var newCon = $(this).val();
-        window.location = APP_HOST+'c/'+newCon+'/'+window.location.hash;
+        var location = APP_HOST+'c/'+newCon+'/'+window.location.hash;
+        window.location = location;
     });
     
     $('#searchCollection').keyup(function(){
