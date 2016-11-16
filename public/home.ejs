@@ -196,7 +196,7 @@
                                 <% } if(view.group){ %>
                                     <span class="input-item">
                                         <span>Group</span>
-                                        <input list="<%=id %>group" class="qgroup form-control input-xs" name="group" value="<%= view.group[0] %>">
+                                        <input list="<%=id %>group" class="qgroup form-control input-s" name="group" value="<%= view.group[0] %>">
                                         <datalist id="<%=id %>group">
                                             <% view.group.forEach(function(value, key){ %>
                                                 <option value="<%=value %>" selected><%=value %></option>
@@ -211,10 +211,13 @@
                                             <% }); %>
                                         </select>
                                     </span>
+                                    <span class="input-item">
+                                        <span>AccField</span>
+                                        <input class="qaccumulator_field form-control input-s" name="accumulator_field" value="<%= view.accumulator_field || 1  %>">
+                                    </span>
 
                                 <% } %>
                                 
-                                <% if(view.action === 'find'){ %>
                                 <span class="input-item">
                                     <span>Sort By</span>
                                     <select class="qsort form-control" name="sortOn">
@@ -231,7 +234,6 @@
                                         <% }); %>
                                     </select>
                                 </span>
-                                <% } %>
 
                             </div>
 

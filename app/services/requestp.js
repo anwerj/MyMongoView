@@ -4,6 +4,7 @@ var _lodash = require('lodash'),
 module.exports = {
 
     toContext : function(context){
+        console.log(context);
         context.order = this.toOrder(context.orderOn);
         context.sort = this.toSort(context.sortOn, context.order);
         context.skip = this.toSkip(context.page, context.limit);
@@ -77,12 +78,15 @@ module.exports = {
     },
     
     toAggregate : function(context){
-        var total = {};
-        total['$'+context.accumulator] = 1;
+        var acc = {};
+        var accumulator_field = context.accumulator_field 
+            && (context.accumulator_field.indexOf('$') === 0) 
+            && context.accumulator_field;
+        acc['$'+context.accumulator] = accumulator_field || 1;
         return [
             { $match : context.filter },
-            { $group : { _id : context.group, total : total}},
-            { $sort : { total : context.order}},            
+            { $group : { _id : context.group, acc : acc}},
+            { $sort : { _id : context.order}},            
             { $skip : context.skip },
             { $limit : context.limit },
         ];

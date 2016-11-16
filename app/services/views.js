@@ -23,6 +23,7 @@ views.prototype.all = function(){
 views.prototype.get = function(type, key){
     var file = this.container+type+'/'+key+'.'+this.connect+'.json';
     if(fs.existsSync(file)){
+        delete require.cache[require.resolve(file)];
         return require(file);
     }
 }

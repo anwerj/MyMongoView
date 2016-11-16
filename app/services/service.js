@@ -26,6 +26,9 @@ service.prototype.collections = function(forceRefresh){
                                 .then(function(count){
                                     item.count = count;
                                     return item;
+                                }).catch(function(err){
+                                    item.count = 0;
+                                    return item;
                                 })
                         }).then(function(result){
                             console.log('Refreshing Collections with', forceRefresh);
