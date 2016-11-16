@@ -1,3 +1,4 @@
-myviews/
-config.js/
-
+/node_modules
+/config.js
+/myviews
+npm-debug.log
