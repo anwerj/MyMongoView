@@ -8,9 +8,13 @@ MyMongoView provides easy, customizable views to query MongoDB. And above all th
 
 Install MyMongoView with npm, create a directory and run given command from that directory.
 ``` bash
-npm install my-mongo-view
+$ npm install my-mongo-view
 ```
 
+Now, if you are installing it first time, Copy file `sample.config.json` to `config.json`
+``` bash
+$ cp sample.config.json config.json
+```
 Setup your MongoDB Connections from `config.json` file. There is a default connection with default views.
 Just change connections.string to your MongoDB instance.    
 > You can also add multiple connections.

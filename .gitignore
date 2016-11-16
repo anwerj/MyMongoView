@@ -1,4 +1,4 @@
 /node_modules
-/config.js
-/myviews
+/config.json
+/__views
 npm-debug.log
