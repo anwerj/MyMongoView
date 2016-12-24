@@ -100,6 +100,12 @@ function Result(view, collection){
             to.find('.ra-update').click(function(){
                 _this.refreshResult(to, true);
             });
+            to.find('.ra-delete').click(function(){
+                _this.deleteResult(to);
+            });
+            to.rotator = function(stop){
+                to.find('.ra-rotator .glyphicon').removeClass('hide').addClass('glyphicon-repeat gly-spin');
+            }
         },
         
         resultKeyClick : function(to){
@@ -147,7 +153,6 @@ function Result(view, collection){
         },
         
         end : function(){
-
             this.bindEndEvents();
         },
         
@@ -190,22 +195,35 @@ function Result(view, collection){
             if(updated && !set){
                 return;
             }
-            to.find('.ra-rotator .glyphicon').removeClass('hide').addClass('glyphicon-repeat gly-spin');
+            to.rotator();
             $.ajax({
                 url : APP_PATH+'collection/refresh',
                 data : {action : 'refresh', collection : to.data('collection'),filter : filter, toUpdate : {$set : set}}
             }).done(function(data){
-                //to.find('.ra-refresh .glyphicon').removeClass('glyphicon-repeat gly-spin')
+                to.rotator(true);
                 var result = new Result(view, collection);
                 to.replaceWith(result.item(data.result[0], 0, 1));
             }).error(function(xhr){
-                to.find('.ra-rotator .glyphicon').removeClass('glyphicon-repeat gly-spin').addClass('hide');
+                to.rotator(true);
                 view.appendError(xhr);
             });
         },
         
-        appendSuccess : function(to, data){
-            
+        deleteResult : function(to, force){
+            var filter = {_id : { operators : {eq : to.data('value')}, dataType : to.data('value-type')} };
+            if(!(force || Handler.prompt('Are you sure about deleting : '+ to.data('value')))){
+                return;
+            }
+            to.rotator();
+            $.ajax({
+                url : APP_PATH+'collection/delete',
+                data : {action : 'delete', collection : to.data('collection'),filter : filter}
+            }).done(function(data){
+                to.remove();
+            }).error(function(xhr){
+                to.rotator(true);
+                view.appendError(xhr);
+            });
         }
     }
 }

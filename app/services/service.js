@@ -97,10 +97,16 @@ service.prototype.findOne = function(context){
 service.prototype.update = function(context){
     var query = this.collection
                 .update(context.filter, context.updated);
-                
+
     return query;
 }
 
+service.prototype.delete = function(context){
+    var query = this.collection
+                .remove(context.filter);
+
+    return query;
+}
 service.prototype.getQuery = function(context){
     var queryString = 'db.'+this.collectionName+'.'+context.action+'(';
     switch(context.action){
