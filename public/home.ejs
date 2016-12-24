@@ -304,7 +304,6 @@
                                     <h4 class="modal-title">Update Documents</h4>
                                 </div>
                                 <div class="modal-body">
-                                    
                                     <div class="row">
                                         <div class="col-md-12">
                                             <label>Filters</label>
@@ -316,8 +315,6 @@
                                         </div>
 
                                     </div>
-                                    
-                                    
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -378,14 +375,14 @@
     <script id="tResultSet" type="text/html">
         <div class="result-box" data-collection="<%= collection%>" data-value="<%= item._id %>" data-value-type="<%= Html.valueType(item._id).valueType %>">
             <div class="result-actions">
-                <span class="btn-group btn-group-xs btn-info">
+                <span class="btn-group btn-group-xs">
                     <span class="btn btn-xs btn-info ra-expand">Expand</span>
                     <span class="btn btn-xs btn-info ra-beautify">Beautify</span>
                     <span class="btn btn-xs btn-info ra-refresh">Refresh</span>
                     <span class="btn btn-xs btn-info ra-update">Update</span>
                     <span class="btn btn-xs btn-info ra-delete">Delete</span>
                 </span>
-                <span class="btn-xs ra-rotator hide"><span class="glyphicon glyphicon-refresh"></span></span>
+                <span class="btn-xs ra-rotator"><span class="glyphicon glyphicon-refresh hide"></span></span>
                 <% if(join){ var cjoin; %>
                 <span class="btn-group btn-group-xs pull-right">
                     
@@ -405,8 +402,11 @@
                 <% } %>
             </div>
             <div class="result-items">
-                <div class="result-data result-data-first">
+                <div class="result-data result-data-prettified">
                     <pre class="text-info"><%= JSON.stringify(item, null, 2) %></pre>
+                </div>
+                <div class="result-data result-data-beautified">
+                    
                 </div>
             </div>
         </div>

@@ -10,7 +10,7 @@ function Result(view, collection){
             }));
             this.bindEvents(result);
             if(count < 10){
-                this.beautify(result);
+                this.beautifyToggle(result);
             }
             return result;
         },
@@ -23,22 +23,30 @@ function Result(view, collection){
 
             var resultItems = to.find('.result-items');
 
-            if(resultItems.hasClass('expanded') && !open){
+            if(to.hasClass('expanded')){
+                to.removeClass('expanded');
                 to.find('.ra-expand').html('Expand');
-                resultItems.removeClass('expanded');
             }else{
+                to.addClass('expanded');
                 to.find('.ra-expand').html('Shrink');
-                resultItems.addClass('expanded');
-            }              
+            }
         },
-        beautify : function(to){
-            var resultData = to.find('.result-data')
-            if(!resultData.hasClass('beautified')){
-                var html = $(Html.beautify(JSON.parse(resultData.text())));
-                this.bindBeautifulEvents(html);
-                resultData.html(html).addClass('beautified');
-                to.find('.ra-beautify').remove();
-                to.find('.ra-refresh').removeClass('hide');
+        beautifyToggle : function(to){
+
+            if(to.hasClass('beautified')){
+                to.removeClass('beautified');
+                to.find('.ra-beautify').html('Beautify');
+            }
+            else {
+                var beautified = to.find('.result-data-beautified');
+                if(!beautified.hasClass('beautified')){
+                    var html = $(Html.beautify(JSON.parse(to.find('.result-data-prettified').text())));
+                    this.bindBeautifulEvents(html);
+                    beautified.html(html).addClass('beautified');
+                }
+                // Add beautify
+                to.addClass('beautified');
+                to.find('.ra-beautify').html('Prettify');
                 this.expandToggle(to, true);
             }
         },
@@ -88,7 +96,7 @@ function Result(view, collection){
             });
 
             to.find('.ra-beautify').click(function(){
-                _this.beautify(to);
+                _this.beautifyToggle(to);
             });
             to.find('.ra-join').click(function(){
                 to.find('.ra-beautify').click();

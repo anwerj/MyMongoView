@@ -254,25 +254,31 @@ ul,li{
     max-height: 100px;
     overflow: hidden;
 }
-.result-items.expanded{
+.expanded .result-items{
     height: auto;
     max-height: 100%;
     overflow: auto;
 }
-.result-data-first{
+.result-data{
     float: left;
     margin: 0 5px 5px 0;
     border-left: 1px solid #efefef;
 }
-.result-data{
-    
-}
-.result-data pre{
+.result-data-prettified pre{
     background: white;
     font-size: 12px;
     border : none;
     padding: 5px;
     margin: 0px;
+}
+.result-data-beautified{
+    display: none;
+}
+.beautified .result-data-beautified{
+    display: block;
+}
+.beautified .result-data-prettified{
+    display: none;
 }
 .result-join{
     float: left;
