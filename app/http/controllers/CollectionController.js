@@ -13,7 +13,7 @@ module.exports = {
     },
 
     query : function(req, res){
-        var context = requestp.toContext(req.query), r;     
+        var context = requestp.toContext(req.query), r;
         var s = new service(req.params._con, context.collection);
         var response = requestp.getResponse(context,s);
         switch(context.action){
@@ -23,8 +23,8 @@ module.exports = {
                 .then(function(count){
                     if(count){
                         return s.find(context)
-                            .then(function(response){
-                                return { result : response, count : count};
+                            .then(function(result){
+                                return { result : result, count : count};
                             });
                     }
                     return { result : [], count : count};
@@ -33,22 +33,22 @@ module.exports = {
 
             case 'findOne':
                 r = s.findOne(context)
-                    .then(function(response){
-                        return { result : response}
+                    .then(function(result){
+                        return { result : result}
                     });
                 break;
 
             case 'aggregate':
                 r = s.aggregate(context)
-                    .then(function(response){
-                        return { result : response}
+                    .then(function(result){
+                        return { result : result}
                     });
                 break;
 
             case 'distinct':
                 r = s.distinct(context)
-                    .then(function(response){
-                        return { result : response}
+                    .then(function(result){
+                        return { result : result}
                     });
                 break;
 
@@ -75,6 +75,35 @@ module.exports = {
             }).catch(function(err){
                 res.status(400).send(err);
             });
+    },
+    
+    refresh : function(req, res){
+        var context = requestp.toContext(req.query), r;
+        var s = new service(req.params._con, context.collection);
+        var response = requestp.getResponse(context,s);
+        var callback = function(err, result){
+            if(err){
+                return res.status(400).send(err);
+            }
+            res.json(requestp.finalizeResponse(response, { result : result}));
+        }
+        if(context.updated){
+            r = s.update(context)
+                .then(function(updated){
+                    s.find(context)
+                    .then(function(result){
+                        callback(null, result);
+                    })
+                });
+        } else {
+            r = s.find(context)
+            .then(function(result){
+                callback(null, result);
+            })
+        }
+        r.catch(function(err){
+            callback(err);
+        });
     }
 
 };

@@ -83,6 +83,24 @@ service.prototype.aggregate = function(context){
     return query;
 };
 
+service.prototype.findOne = function(context){
+
+    var query = this.collection
+                .find(context.filter).limit(1).toArray()
+                .then(function(response){
+                    return response[0];
+                });
+
+    return query;
+}
+
+service.prototype.update = function(context){
+    var query = this.collection
+                .update(context.filter, context.updated);
+                
+    return query;
+}
+
 service.prototype.getQuery = function(context){
     var queryString = 'db.'+this.collectionName+'.'+context.action+'(';
     switch(context.action){

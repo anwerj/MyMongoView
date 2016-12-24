@@ -1,10 +1,11 @@
-function Result(view){
+function Result(view, collection){
     
     return {
         item : function(item, index, count){
             var result = $(Html('#tResultSet', {
                 random : view.random,
                 item : item,
+                collection : collection,
                 join : view.view.join
             }));
             this.bindEvents(result);
@@ -37,6 +38,7 @@ function Result(view){
                 this.bindBeautifulEvents(html);
                 resultData.html(html).addClass('beautified');
                 to.find('.ra-beautify').remove();
+                to.find('.ra-refresh').removeClass('hide');
                 this.expandToggle(to, true);
             }
         },
@@ -92,13 +94,19 @@ function Result(view){
                 to.find('.ra-beautify').click();
                 _this.fireJoin(to, $(this));
             });
+            to.find('.ra-refresh').click(function(){
+                _this.refreshResult(to);
+            });
+            to.find('.ra-update').click(function(){
+                _this.refreshResult(to, true);
+            });
         },
         
         resultKeyClick : function(to){
 
             var keyType = to.data('key-type');
             if(keyType === 'object'){
-                return Handler('Warning', {reason : 'objects can not be searched as whole'}) ;
+                return Handler('Objects can not be searched as whole') ;
             }
             var item = to.parent().find('.rbval');
             var prompt = {
@@ -120,21 +128,26 @@ function Result(view){
                 $(this).find('.rbval').attr('spellcheck', 'false').focus();
             });
             to.find('.rbval').blur(function(){
-                if($(this).text() != $(this).data('value')){
-                    $(this).parent().addClass('rbval-updated');
-                } else {
-                    $(this).parent().removeClass('rbval-updated');
+                var oldVal = $(this).data('value');
+                var newVal = $(this).text();
+                if($(this).data('value-type') === 'boolean'){
+                    newVal = (newVal == 'true');
                 }
+                if(oldVal == newVal){
+                    $(this).parent().removeClass('rbval-updated');
+                } else {
+                    $(this).parent().addClass('rbval-updated');
+                }
+                _this.activateUpdateView(to);
             });
             to.find('.rbval-reset').click(function(){
                 var rbval = $(this).parent().prev();
                 rbval.text(rbval.data('value')).blur();
-            })
+            });
         },
         
         end : function(){
-            
-            
+
             this.bindEndEvents();
         },
         
@@ -150,6 +163,49 @@ function Result(view){
                 view.query.find('.qpage').val(1);
                 view.fillFilter(prompt, true);
             })
+        },
+        
+        activateUpdateView : function(to, set){
+            var updated = $(to).find('.rbval-updated .rbval:not([data-key="_id"])').toArray();
+            if(!set){
+                return;
+            }
+            if(!updated.length){
+                return Handler('No field select to Update.');
+            }
+            
+            var set = {};
+            updated.forEach(function(item, index){
+                set[$(item).data('key')] = {
+                    value : $(item).text(),
+                    dataType : $(item).data('value-type')
+                }
+            });
+            return set;
+        },
+        
+        refreshResult : function(to, updated){
+            var filter = {_id : { operators : {eq : to.data('value')}, dataType : to.data('value-type')} };
+            var set = this.activateUpdateView(to, updated);
+            if(updated && !set){
+                return;
+            }
+            to.find('.ra-rotator .glyphicon').removeClass('hide').addClass('glyphicon-repeat gly-spin');
+            $.ajax({
+                url : APP_PATH+'collection/refresh',
+                data : {action : 'refresh', collection : to.data('collection'),filter : filter, toUpdate : {$set : set}}
+            }).done(function(data){
+                //to.find('.ra-refresh .glyphicon').removeClass('glyphicon-repeat gly-spin')
+                var result = new Result(view, collection);
+                to.replaceWith(result.item(data.result[0], 0, 1));
+            }).error(function(xhr){
+                to.find('.ra-rotator .glyphicon').removeClass('glyphicon-repeat gly-spin').addClass('hide');
+                view.appendError(xhr);
+            });
+        },
+        
+        appendSuccess : function(to, data){
+            
         }
     }
 }

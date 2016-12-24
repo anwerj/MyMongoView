@@ -376,14 +376,15 @@
     </script>
     
     <script id="tResultSet" type="text/html">
-        <div class="result-box">
+        <div class="result-box" data-collection="<%= collection%>" data-value="<%= item._id %>" data-value-type="<%= Html.valueType(item._id).valueType %>">
             <div class="result-actions">
-                <span class="btn-group btn-group-xs">
+                <span class="btn-group btn-group-xs btn-info">
                     <span class="btn btn-xs btn-info ra-expand">Expand</span>
                     <span class="btn btn-xs btn-info ra-beautify">Beautify</span>
-                    <!-- <span class="btn btn-xs btn-success ra-update ">Update</span> -->
+                    <span class="btn btn-xs btn-info ra-refresh">Refresh</span>
+                    <span class="btn btn-xs btn-info ra-update">Update</span>
                 </span>
-                
+                <span class="btn-xs ra-rotator"><span class="glyphicon glyphicon-refresh"></span></span>
                 <% if(join){ var cjoin; %>
                 <span class="btn-group btn-group-xs pull-right">
                     

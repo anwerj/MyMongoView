@@ -98,6 +98,14 @@ module.exports = {
         }
         
         return items;
+    },
+    
+    convertToValue : function(value, dataType){
+        var dataTypeFn = this.dataTypes(dataType);
+        if(dataTypeFn){
+            return dataTypeFn(value);
+        }
+        return value;
     }
     
 }

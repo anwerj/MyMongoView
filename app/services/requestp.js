@@ -21,6 +21,11 @@ module.exports = {
         } else if(context.action === 'distinct'){
             context.key = this.toKey(context.key);
         }
+        if(context.toUpdate){
+            if(context.toUpdate.$set){
+                context.updated = this.toSet(context.toUpdate.$set);
+            }
+        }
         return context;
     },
 
@@ -77,6 +82,17 @@ module.exports = {
         return out;
     },
     
+    toSet : function(input){
+        
+        if(input){
+            var set= {};
+            _lodash.each(input, function(obj, keyName){
+                set[keyName] = convertor.convertToValue(obj.value, obj.dataType);
+            })
+        } 
+        return {$set : set};
+    },
+    
     toAggregate : function(context){
         var acc = {};
         var accumulator_field = context.accumulator_field 
@@ -115,7 +131,7 @@ module.exports = {
         response.meta.endAt = Date.now();
         response.meta.count = result.count;
         response.result = result.result;
-        console.log(response.meta);
+
         if(response.meta.count > (response.meta.context.skip + response.meta.context.limit)){
             response.meta.hasMore = true;
             if(response.meta.context.sortOn === '_id'){

@@ -1,4 +1,3 @@
-function Handler(type, obj){
-    console.log(type, obj);
-    return false;
+function Handler(message, type){
+    console.log(message, type);
 }

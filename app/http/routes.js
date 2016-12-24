@@ -16,5 +16,6 @@ module.exports = function (app, passport) {
     connectionRouter.get('/:_con/collections', CollectionController.all);
     connectionRouter.get('/:_con/collection', CollectionController.query);
     connectionRouter.get('/:_con/collections/feed', CollectionController.feed);
+    connectionRouter.get('/:_con/collection/refresh', CollectionController.refresh);
 
 };

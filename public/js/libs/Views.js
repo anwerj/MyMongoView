@@ -161,7 +161,7 @@ View.prototype.appendSuccess = function(data){
     this.result.html(Html('#tResultTop', {meta : data.meta}));
     var resultSet = this.result.find('.result-set');
     if(data.result.length){
-        var result = Result(this);
+        var result = Result(this, data.meta.context.collection);
         if(data.meta.context.action === 'find'){
             data.result.forEach(function(item, index){
                 resultSet.append(result.item(item, index, data.result.length));
