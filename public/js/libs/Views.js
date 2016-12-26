@@ -58,23 +58,24 @@ View.prototype.setPrompt = function(){
 }
 View.prototype.appendPrompt = function(prompt){
     var feed = prompt.feed ? Feed.load(this.query.find('.qcollection').val(), prompt.name) : null;
-    
-    var pId = prompt.name+'-'+prompt.operator;
-    var id = this.random+'-prompt-'+Html.clean(pId);
+
+    var id = this.random+'-prompt-'+Html.clean(prompt.name+'-'+prompt.operator);
     var html = Html('#tPrompt', {
         id : id,
         prompt : prompt
     })
-    if(this.promptList[pId]){
+    if(this.promptList[id]){
         this.query.find('#'+id).replaceWith(html);
     } else {
-        this.promptList[pId] = prompt;
+        this.promptList[id] = prompt;
         this.query.find('.qpromt').append(html);
     }
-    
     return id;
 }
-
+View.prototype.removePrompt = function(id){
+    $('#'+id).remove();
+    this.promptList[id] = null;
+}
 View.prototype.fillFilter = function(prompt){
     var fpromptModal = this.query.find('.fpromptModal');
     for(var i in prompt){
@@ -127,6 +128,7 @@ View.prototype.submit = function(data){
             url : APP_PATH+'collection',
             data : dataObject
         }).done(function(data){
+            $('.views').scrollTop(0);
             _this.actionStop('submit');
             _this.appendSuccess(data);
         }).error(function(xhr){
@@ -210,6 +212,9 @@ View.prototype.bindEvents = function(){
     to.query.find('.btnAddFilter').click(function(event){
         event.preventDefault();
         to.addFilter();
-    }); 
+    });
+    to.query.find('.removePrompt').click(function(event){
+        to.removePrompt($(this).data('remove'));
+    })
 };
 

@@ -19,25 +19,22 @@ function Result(view, collection){
             
         },
         
-        expandToggle : function(to, open){
+        expandToggle : function(to, force){
 
             var resultItems = to.find('.result-items');
 
-            if(to.hasClass('expanded')){
-                to.removeClass('expanded');
-                to.find('.ra-expand').html('Expand');
-            }else{
+            if(!to.hasClass('expanded') || force){
                 to.addClass('expanded');
                 to.find('.ra-expand').html('Shrink');
+            }else{
+                to.removeClass('expanded');
+                to.find('.ra-expand').html('Expand');
             }
         },
-        beautifyToggle : function(to){
+        beautifyToggle : function(to, force){
 
-            if(to.hasClass('beautified')){
-                to.removeClass('beautified');
-                to.find('.ra-beautify').html('Beautify');
-            }
-            else {
+            if(!to.hasClass('beautified') || force){
+                this.expandToggle(to, true)
                 var beautified = to.find('.result-data-beautified');
                 if(!beautified.hasClass('beautified')){
                     var html = $(Html.beautify(JSON.parse(to.find('.result-data-prettified').text())));
@@ -47,7 +44,10 @@ function Result(view, collection){
                 // Add beautify
                 to.addClass('beautified');
                 to.find('.ra-beautify').html('Prettify');
-                this.expandToggle(to, true);
+            }
+            else {
+                to.removeClass('beautified');
+                to.find('.ra-beautify').html('Beautify');
             }
         },
         
@@ -99,7 +99,7 @@ function Result(view, collection){
                 _this.beautifyToggle(to);
             });
             to.find('.ra-join').click(function(){
-                to.find('.ra-beautify').click();
+                _this.beautifyToggle(to, true);
                 _this.fireJoin(to, $(this));
             });
             to.find('.ra-refresh').click(function(){
@@ -166,7 +166,8 @@ function Result(view, collection){
         
         bindEndEvents : function(){
             
-            view.result.find('.rNextPage').click(function(event){
+            view.result.find('.rNextPage').unbind('click').click(function(event){
+                event.preventDefault();
                 var prompt = {
                     name : $(this).data('sort-on'),
                     operator : $(this).data('sort-order') == '1' ? 'gt' : 'lt',
@@ -175,7 +176,7 @@ function Result(view, collection){
                 };
                 view.query.find('.qpage').val(1);
                 view.fillFilter(prompt, true);
-            })
+            });
         },
         
         activateUpdateView : function(to, set){

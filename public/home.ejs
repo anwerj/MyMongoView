@@ -336,7 +336,7 @@
                     <select class="ipinput" name="filter[<%= prompt.name %>][dataType]" >
                         <%= Html('#tOptionArray', {options : APP_DATA.dataTypes, selected : prompt.dataType}) %>
                     </select> | 
-                <b onclick="$(this).parentsUntil('.qpromt').remove()"> x </b></span>
+                <b class="removePrompt" data-remove="<%= id %>"> x </b></span>
             </span>
             
             <input id="input<%= id %>" list="datalist<%= id %>" onfocus="this.value = this.value;" class="form-control" type="<%=prompt.type %>" name="filter[<%= prompt.name %>][operators][<%= prompt.operator %>]" value="<%= prompt.value || '' %>"/>
