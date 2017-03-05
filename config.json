@@ -3,7 +3,7 @@
     "default" : 0,
     "connections" : [
         {
-            "name" : "Sample DB",
+            "name" : "Test DB",
             "string" : "mongodb://localhost/test",
             "options" : {},
             "config" : {
