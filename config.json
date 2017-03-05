@@ -1,12 +1,10 @@
 {
-    "app" : {
-        "port" : "12098"
-    },
+    "port" : "12098",
     "default" : 0,
     "connections" : [
         {
-            "name" : "Connection",
-            "string" : "localhost:27017/test",
+            "name" : "Test DB",
+            "string" : "mongodb://localhost/test",
             "options" : {},
             "config" : {
                 "debug" : true
@@ -14,7 +12,6 @@
             "container" : "container"
         }
     ],
-    "viewpath" : "../../views/",
+    "views" : "views",
     "timezone"  :   "Etc/GMT"
-
 }
