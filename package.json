@@ -1,25 +1,23 @@
 {
-  "name": "my-mongo-view",
-  "version": "0.3.1",
-  "description": "MongoDB Easy Views",
+  "name": "mmv_front_end",
+  "version": "1.0.0",
+  "description": "[comment]: # (head) # MyMongoView MyMongoView provides easy, customizable views to query MongoDB. And above all that it gives most informative and beautiful approach to your MongoDB Document.",
   "main": "index.js",
+  "dependencies": {
+    "my-mongo-view": "^0.3.2"
+  },
+  "devDependencies": {},
   "scripts": {
-    "start": "node app.js",
-    "postinstall": "node ./app/scripts/npm_postinstall.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    "bluebird": "^3.3.5",
-    "body-parser": "~1.13.3",
-    "ejs": "^2.5.2",
-    "express": "^4.13.4",
-    "lodash": "~3.10.1",
-    "marked": "^0.3.6",
-    "moment": "~2.10.6",
-    "mongoose": "^4.4.7",
-    "ncp": "^2.0.0",
-    "node-delete": "^0.1.2"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anwerjunaid/MyMongoView.git"
   },
-  "author": "Junaid Anwer <junaid.up.in@gmail.com>",
-  "license": "ISC"
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anwerjunaid/MyMongoView/issues"
+  },
+  "homepage": "https://github.com/anwerjunaid/MyMongoView#readme"
 }
