@@ -13,7 +13,7 @@ Install MyMongoView from Github, and go to MyMongoView directory.
 
 Now, you need to install npm dependencies
 ``` bash
- npm install my-mongo-view
+ npm install
 ```
 Setup your MongoDB Connections from `config.json` file. There is a default connection with default views.
 Just change connections.string to your MongoDB instance.    
