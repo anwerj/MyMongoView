@@ -1,9 +1,9 @@
 [comment]: # (head)
 # MyMongoView
-MyMongoView provides easy, customizable views to query MongoDB. And above all that it gives most informative and beautiful approach to your MongoDB Document.
 
-[Go through documentation, with screenshots](https://anwerjunaid.github.io/mymongoview/#/)
-[comment]: # (head.installation)
+MyMongoView provides easy, customizable views to query MongoDB. And above all that it gives most informative and beautiful approach to your MongoDB Document.     
+
+[comment]: (#) (head.installation)
 ### Installation
 
 Install MyMongoView from Github, and go to MyMongoView directory.
