@@ -8,7 +8,7 @@ MyMongoView provides easy, customizable views to query MongoDB. And above all th
 
 Install MyMongoView from Github, and go to MyMongoView directory.
 ``` bash
- git clone https://github.com/anwerjunaid/MyMongoView.git && cd MyMongoView
+ git clone https://github.com/anwerj/MyMongoView.git && cd MyMongoView
 ```
 
 Now, you need to install npm dependencies
